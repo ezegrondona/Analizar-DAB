@@ -54,11 +54,12 @@ keywords:
   - brightfield microscopy
   - scientific software
 
-# Cuando Zenodo emita el DOI, descomentá este bloque y pegalo.
-# El DOI "concept" —el que agrupa todas las versiones— es el que
-# conviene citar: apunta siempre a la más reciente.
-#
-# identifiers:
-#   - type: doi
-#     value: "10.5281/zenodo.XXXXXXX"
-#     description: DOI de todas las versiones de Analizar DAB
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.23604119"
+    description: >-
+      DOI de todas las versiones de Analizar DAB. Es el que conviene
+      citar: apunta siempre a la más reciente.
+  - type: doi
+    value: "10.5281/zenodo.23604120"
+    description: DOI de la versión 1.0.0 en particular

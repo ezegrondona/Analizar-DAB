@@ -3,6 +3,7 @@
 [![FIJI](https://img.shields.io/badge/Programa-FIJI%2FImageJ-blue.svg)](https://imagej.net/software/fiji/)
 [![Licencia](https://img.shields.io/badge/Licencia-BSD--3--Clause-green.svg)](LICENSE)
 [![Java](https://img.shields.io/badge/Java-8%2B-orange.svg)](https://adoptium.net/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23604119.svg)](https://doi.org/10.5281/zenodo.23604119)
 
 <div align="center">
 <img src="docs/Analizar DAB logo design-Final.png" width="300">
@@ -76,17 +77,19 @@ Si usás Analizar DAB en un trabajo publicado, citalo. Para una
 herramienta científica, la cita es lo que permite que el trabajo de
 construirla se reconozca y que otro pueda reproducir lo que hiciste.
 
-> Grondona, E. (2026). *Analizar DAB* (versión 1.0.0) [software].
-> Centro de Microscopía Electrónica, Universidad Nacional de Córdoba —
-> INICSA (CONICET–UNC). https://github.com/ezegrondona/Analizar-DAB
+> Grondona, E. (2026). *Analizar DAB* [software]. Centro de
+> Microscopía Electrónica, Universidad Nacional de Córdoba — INICSA
+> (CONICET–UNC). https://doi.org/10.5281/zenodo.23604119
 
 El repositorio incluye un archivo [`CITATION.cff`](CITATION.cff):
 GitHub lo lee y muestra el botón **«Cite this repository»** arriba a
 la derecha, que da la cita ya formateada en APA y en BibTeX.
 
-> **Nota:** cuando el DOI de Zenodo esté emitido se agrega acá y al
-> `CITATION.cff`, y pasa a ser la forma preferida de citar — un DOI es
-> permanente aunque el repositorio se mude.
+**Sobre el DOI.** El de arriba es el *concept DOI*: apunta siempre a
+la versión más reciente, así que una cita hecha hoy sigue sirviendo
+cuando se publique una versión nueva. Si necesitás citar una versión
+puntual —por ejemplo para que otro reproduzca exactamente tu análisis—
+la 1.0.0 tiene el suyo: [10.5281/zenodo.23604120](https://doi.org/10.5281/zenodo.23604120).
 
 ---
 
