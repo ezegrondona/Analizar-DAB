@@ -2,8 +2,11 @@
   ANALIZAR DAB — COMPONENTES DE TERCEROS
 ===========================================================
 
-El código de Analizar DAB se distribuye bajo licencia BSD 3-Clause
-(ver LICENSE).
+El código de Analizar DAB se distribuye bajo licencia BSD 3-Clause.
+El texto completo está en LICENSE, que contiene únicamente esa
+licencia y nada más: GitHub y las herramientas de análisis la
+identifican leyendo ese archivo, y cualquier agregado hace que dejen
+de reconocerla. Por eso lo relativo a terceros vive acá.
 
 El archivo .jar que se publica en Releases empaqueta además las
 bibliotecas que se listan abajo, cada una con su propia licencia.
