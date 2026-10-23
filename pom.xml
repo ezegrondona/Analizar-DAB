@@ -15,8 +15,12 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <!-- "release" en vez de "source" y "target": asi el compilador
+             no solo GENERA bytecode de Java 8 sino que ademas compila
+             CONTRA la biblioteca de Java 8. Con source/target, un JDK
+             moderno deja pasar llamadas a metodos que no existen en
+             Java 8 y la falla recien aparece en la maquina del usuario. -->
+        <maven.compiler.release>8</maven.compiler.release>
     </properties>
 
     <!-- Dependencies -->
