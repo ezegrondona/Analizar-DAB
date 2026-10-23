@@ -1,0 +1,64 @@
+# ==========================================================
+#  Cómo citar Analizar DAB
+# ----------------------------------------------------------
+#  GitHub lee este archivo y muestra solo el botón
+#  «Cite this repository» en la portada del repositorio.
+#  Zenodo también lo lee al generar el DOI.
+#
+#  FALTA COMPLETAR: el DOI. Aparece después de conectar
+#  Zenodo y publicar un release. Ver «identifiers», al final.
+# ==========================================================
+
+cff-version: 1.2.0
+
+message: >-
+  Si usás Analizar DAB en un trabajo publicado, por favor citalo
+  como se indica a continuación.
+
+title: Analizar DAB
+
+abstract: >-
+  Complemento para FIJI/ImageJ que automatiza la cuantificación de la
+  señal de diaminobencidina (DAB) en imágenes de tejido obtenidas por
+  microscopía óptica de campo claro. Separa la señal cromógena del
+  contraste nuclear, mide la intensidad y la superficie marcada sobre
+  la región de interés, y exporta los resultados a planilla de
+  cálculo. Está pensado para quien analiza inmunohistoquímica y
+  necesita un criterio uniforme entre imágenes y entre operadores.
+
+type: software
+
+authors:
+  - family-names: Grondona
+    given-names: Ezequiel
+    affiliation: >-
+      Centro de Microscopía Electrónica, Universidad Nacional de
+      Córdoba — INICSA (CONICET–UNC), Córdoba, Argentina
+    orcid: "https://orcid.org/0009-0004-4155-2001"
+
+version: 1.0.0
+
+date-released: "2026-08-31"
+
+license: BSD-3-Clause
+
+repository-code: "https://github.com/ezegrondona/Analizar-DAB"
+
+keywords:
+  - immunohistochemistry
+  - DAB quantification
+  - diaminobenzidine
+  - image analysis
+  - FIJI
+  - ImageJ
+  - brightfield microscopy
+  - scientific software
+
+# Cuando Zenodo emita el DOI, descomentá este bloque y pegalo.
+# El DOI "concept" —el que agrupa todas las versiones— es el que
+# conviene citar: apunta siempre a la más reciente.
+#
+# identifiers:
+#   - type: doi
+#     value: "10.5281/zenodo.XXXXXXX"
+#     description: DOI de todas las versiones de Analizar DAB

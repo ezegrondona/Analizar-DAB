@@ -1,6 +1,8 @@
 # Analizar DAB
 
-[![FIJI](https://img.shields.io/badge/Programa-FIJI/ImageJ-blue.svg)](https://codeberg.org/ezegrondona/Analizar-DAB)
+[![FIJI](https://img.shields.io/badge/Programa-FIJI%2FImageJ-blue.svg)](https://imagej.net/software/fiji/)
+[![Licencia](https://img.shields.io/badge/Licencia-BSD--3--Clause-green.svg)](LICENSE)
+[![Java](https://img.shields.io/badge/Java-8%2B-orange.svg)](https://adoptium.net/)
 
 <div align="center">
 <img src="docs/Analizar DAB logo design-Final.png" width="300">
@@ -19,8 +21,9 @@
 
 ## ⬇️ Descarga
 
-Descargar la última versión del `.jar` desde "Releases\Lazamientos" > "Downloads"
-- [Descargar desde Releases/Lanzamientos](https://codeberg.org/ezegrondona/Analizar-DAB/releases)
+Descargá la última versión del `.jar` desde la sección **Releases** de este repositorio.
+
+- ⬇️ **[Ir a Releases](https://github.com/ezegrondona/Analizar-DAB/releases)**
 
 ---
 
@@ -49,8 +52,54 @@ O desde **"GUIA DE USO"** una vez abierto el plugin.
 
 ---
 
+## 🔨 Compilar desde el código
+
+El complemento es un proyecto Maven. Con Java 8 o superior y Maven
+instalados:
+
+```
+mvn clean package
+```
+
+El `.jar` listo para usar queda en `target/`. Incluye adentro las
+bibliotecas que necesita —Apache POI, Log4j y sus dependencias—, así
+que se copia a `plugins/` y funciona.
+
+ImageJ no se empaqueta: la aporta la instalación de FIJI donde se
+instale el complemento.
+
+---
+
+## 📑 Cómo citar
+
+Si usás Analizar DAB en un trabajo publicado, citalo. Para una
+herramienta científica, la cita es lo que permite que el trabajo de
+construirla se reconozca y que otro pueda reproducir lo que hiciste.
+
+> Grondona, E. (2026). *Analizar DAB* (versión 1.0.0) [software].
+> Centro de Microscopía Electrónica, Universidad Nacional de Córdoba —
+> INICSA (CONICET–UNC). https://github.com/ezegrondona/Analizar-DAB
+
+El repositorio incluye un archivo [`CITATION.cff`](CITATION.cff):
+GitHub lo lee y muestra el botón **«Cite this repository»** arriba a
+la derecha, que da la cita ya formateada en APA y en BibTeX.
+
+> **Nota:** cuando el DOI de Zenodo esté emitido se agrega acá y al
+> `CITATION.cff`, y pasa a ser la forma preferida de citar — un DOI es
+> permanente aunque el repositorio se mude.
+
+---
+
 ## 📄 Licencia
 
-[MIT](LICENSE) — libre uso, con atribución al autor.
+**BSD 3-Clause.** Podés usar, modificar, redistribuir e incluso vender
+obras derivadas, con dos condiciones: conservar el aviso de copyright
+y la licencia, y no usar el nombre del autor ni el de la institución
+para promocionar derivados sin permiso. El texto completo está en
+[`LICENSE`](LICENSE).
+
+El `.jar` que se distribuye empaqueta bibliotecas de terceros que
+conservan sus propias licencias, todas permisivas y compatibles. Están
+detalladas en [`THIRD-PARTY-NOTICES.txt`](THIRD-PARTY-NOTICES.txt).
 
 </div>
