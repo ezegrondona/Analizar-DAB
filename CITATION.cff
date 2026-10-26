@@ -7,11 +7,11 @@
 #  salen los autores, la afiliación y la licencia del
 #  registro.
 #
-#  El DOI de abajo es el de concepto: no cambia nunca y
-#  apunta siempre a la versión más reciente. El DOI propio de
-#  cada versión lo acuña Zenodo al publicar el release y se
-#  consulta en la solapa «Versions» del registro, así que no
-#  hace falta anotarlo acá.
+#  PENDIENTE: el DOI. Lo acuña Zenodo al publicarse la
+#  primera versión. Cuando exista va acá el de concepto —el
+#  que no cambia nunca y apunta siempre a la más reciente—
+#  más el badge en el README. El DOI propio de cada versión no
+#  se anota: se consulta en la solapa «Versions» del registro.
 # ==========================================================
 
 cff-version: 1.2.0
@@ -47,7 +47,7 @@ authors:
       Córdoba — INICSA (CONICET–UNC), Córdoba, Argentina
     orcid: "https://orcid.org/0000-0002-6397-8781"
 
-version: 1.0.1
+version: 1.0.0
 
 date-released: "2026-10-26"
 
@@ -64,10 +64,3 @@ keywords:
   - ImageJ
   - brightfield microscopy
   - scientific software
-
-identifiers:
-  - type: doi
-    value: "10.5281/zenodo.23604119"
-    description: >-
-      DOI de todas las versiones de Analizar DAB. Es el que conviene
-      citar: apunta siempre a la más reciente.
