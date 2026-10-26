@@ -1,12 +1,17 @@
 # ==========================================================
 #  Cómo citar Analizar DAB
 # ----------------------------------------------------------
-#  GitHub lee este archivo y muestra solo el botón
+#  GitHub lee este archivo y muestra el botón
 #  «Cite this repository» en la portada del repositorio.
-#  Zenodo también lo lee al generar el DOI.
+#  Zenodo también lo lee al publicar cada versión: de acá
+#  salen los autores, la afiliación y la licencia del
+#  registro.
 #
-#  FALTA COMPLETAR: el DOI. Aparece después de conectar
-#  Zenodo y publicar un release. Ver «identifiers», al final.
+#  El DOI de abajo es el de concepto: no cambia nunca y
+#  apunta siempre a la versión más reciente. El DOI propio de
+#  cada versión lo acuña Zenodo al publicar el release y se
+#  consulta en la solapa «Versions» del registro, así que no
+#  hace falta anotarlo acá.
 # ==========================================================
 
 cff-version: 1.2.0
@@ -42,9 +47,9 @@ authors:
       Córdoba — INICSA (CONICET–UNC), Córdoba, Argentina
     orcid: "https://orcid.org/0000-0002-6397-8781"
 
-version: 1.0.0
+version: 1.0.1
 
-date-released: "2026-08-31"
+date-released: "2026-10-26"
 
 license: BSD-3-Clause
 
@@ -66,6 +71,3 @@ identifiers:
     description: >-
       DOI de todas las versiones de Analizar DAB. Es el que conviene
       citar: apunta siempre a la más reciente.
-  - type: doi
-    value: "10.5281/zenodo.23604120"
-    description: DOI de la versión 1.0.0 en particular

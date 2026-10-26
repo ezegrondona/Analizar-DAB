@@ -7,7 +7,7 @@
 
     <groupId>org.cme.antigravity</groupId>
     <artifactId>Analizar_DAB</artifactId>
-    <version>1.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <name>Analizar DAB</name>

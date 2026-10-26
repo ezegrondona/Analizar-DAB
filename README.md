@@ -98,7 +98,8 @@ la derecha, que da la cita ya formateada en APA y en BibTeX.
 la versión más reciente, así que una cita hecha hoy sigue sirviendo
 cuando se publique una versión nueva. Si necesitás citar una versión
 puntual —por ejemplo para que otro reproduzca exactamente tu análisis—
-la 1.0.0 tiene el suyo: [10.5281/zenodo.23604120](https://doi.org/10.5281/zenodo.23604120).
+cada una tiene el suyo, listado en la solapa *Versions* del
+[registro en Zenodo](https://doi.org/10.5281/zenodo.23604119).
 
 ---
 
