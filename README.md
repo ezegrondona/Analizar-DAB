@@ -6,7 +6,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23604119.svg)](https://doi.org/10.5281/zenodo.23604119)
 
 <div align="center">
-<img src="src/main/resources/Analizar DAB logo design-Final.png" width="300">
+<img src="src/main/resources/Analizar DAB logo design-Final.png" width="300" alt="Analizar DAB">
 </div>
 
 <div align="justify">
@@ -39,9 +39,12 @@ Descargá la última versión del `.jar` desde la sección **Releases** de este 
 
 ## 📋 Guía Completa
 
-- [Descargar Guía](https://is.gd/6r8oD6)
+Las dos guías se abren en el navegador, sin descargar nada:
 
-O desde **"GUIA DE USO"** una vez abierto el plugin.
+- 📘 **[Guía de Uso](https://github.com/ezegrondona/Analizar-DAB/blob/main/docs/Gu%C3%ADa%20de%20Uso%20-%20Analizar%20DAB.pdf)**
+- 📐 **[Guía de Calibración de FIJI/ImageJ](https://github.com/ezegrondona/Analizar-DAB/blob/main/docs/Gu%C3%ADa%20de%20Calibraci%C3%B3n%20FIJI-ImajeJ.pdf)**
+
+También desde los botones **GUÍA DE USO** y **CALIBRAR** del propio plugin.
 
 ---
 
@@ -77,9 +80,9 @@ Si usás Analizar DAB en un trabajo publicado, citalo. Para una
 herramienta científica, la cita es lo que permite que el trabajo de
 construirla se reconozca y que otro pueda reproducir lo que hiciste.
 
-> Grondona, E. (2026). *Analizar DAB* [software]. Centro de
-> Microscopía Electrónica, Universidad Nacional de Córdoba — INICSA
-> (CONICET–UNC). https://doi.org/10.5281/zenodo.23604119
+> Grondona, E., & De Paul, A. L. (2026). *Analizar DAB* [software].
+> Centro de Microscopía Electrónica, Universidad Nacional de Córdoba —
+> INICSA (CONICET–UNC). https://doi.org/10.5281/zenodo.23604119
 
 El repositorio incluye un archivo [`CITATION.cff`](CITATION.cff):
 GitHub lo lee y muestra el botón **«Cite this repository»** arriba a

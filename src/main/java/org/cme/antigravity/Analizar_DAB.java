@@ -325,10 +325,16 @@ public class Analizar_DAB implements PlugIn {
         gd.showDialog();
     }
 
+    // Las guias se abren desde GitHub con la ruta "blob", no "raw".
+    // Con "raw" el navegador fuerza la descarga del PDF; con "blob"
+    // GitHub lo muestra en su propio visor y el usuario lo lee ahi
+    // mismo. Hasta la version 1.0.0 estos enlaces apuntaban a
+    // Codeberg, de modo que el plugin instalado dependia de un
+    // repositorio que ya no es el principal.
     private void abrirGuia() {
         try {
             java.awt.Desktop.getDesktop().browse(new java.net.URI(
-                    "https://codeberg.org/ezegrondona/Analizar-DAB/raw/branch/main/docs/Gu%C3%ADa%20de%20Uso%20-%20Analizar%20DAB.pdf"));
+                    "https://github.com/ezegrondona/Analizar-DAB/blob/main/docs/Gu%C3%ADa%20de%20Uso%20-%20Analizar%20DAB.pdf"));
         } catch (Exception e) {
             IJ.showMessage("Error", "No se pudo abrir el enlace:\n" + e.getMessage());
         }
@@ -337,7 +343,7 @@ public class Analizar_DAB implements PlugIn {
     private void abrirAyuda() {
         try {
             java.awt.Desktop.getDesktop().browse(new java.net.URI(
-                    "https://codeberg.org/ezegrondona/Analizar-DAB/raw/branch/main/docs/Gu%C3%ADa%20de%20Calibraci%C3%B3n%20FIJI-ImajeJ.pdf"));
+                    "https://github.com/ezegrondona/Analizar-DAB/blob/main/docs/Gu%C3%ADa%20de%20Calibraci%C3%B3n%20FIJI-ImajeJ.pdf"));
         } catch (Exception e) {
             IJ.showMessage("Error", "No se pudo abrir el enlace:\n" + e.getMessage());
         }
