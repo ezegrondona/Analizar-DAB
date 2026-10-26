@@ -26,7 +26,7 @@
 
 ---
 
-## ⬇️ Descarga
+## 📥 Descarga
 
 Descargá la última versión del `.jar` desde la sección **Releases** de este repositorio.
 
