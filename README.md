@@ -15,7 +15,7 @@
 
 <div align="center">
 
-**[Descarga](#-descarga)** · **[Instalación](#-instalación)** · **[Guías](#-guía-completa)** · **[Compilar](#-compilar-desde-el-código)** · **[Cómo citar](#-cómo-citar)** · **[Licencia](#-licencia)**
+**[![FIJI](https://img.shields.io/badge/Secci%C3%B3n-Descarga-ligthgreen.svg)](#-descarga)** · **[Instalación](#-instalación)** · **[Guías](#-guía-completa)** · **[Compilar](#-compilar-desde-el-código)** · **[Cómo citar](#-cómo-citar)** · **[Licencia](#-licencia)**
 
 </div>
 
