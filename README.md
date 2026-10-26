@@ -1,6 +1,6 @@
 # Analizar DAB
 
-[![FIJI](https://img.shields.io/badge/Programa-FIJI%2FImageJ-blue.svg)](https://imagej.net/software/fiji/)
+[![FIJI](https://img.shields.io/badge/Programa-FIJI%2FImageJ-red.svg)](https://imagej.net/software/fiji/)
 [![Licencia](https://img.shields.io/badge/Licencia-BSD--3--Clause-green.svg)](LICENSE)
 [![Java](https://img.shields.io/badge/Java-8%2B-orange.svg)](https://adoptium.net/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23604119.svg)](https://doi.org/10.5281/zenodo.23604119)
@@ -15,7 +15,7 @@
 
 <div align="center">
 
-**[![FIJI](https://img.shields.io/badge/Secci%C3%B3n-Descarga-ligthgreen.svg)](#-descarga)** · **[Instalación](#-instalación)** · **[Guías](#-guía-completa)** · **[Compilar](#-compilar-desde-el-código)** · **[Cómo citar](#-cómo-citar)** · **[Licencia](#-licencia)**
+**[![FIJI](https://img.shields.io/badge/-Descarga-ligthgreen.svg)](#-descarga)** · **[Instalación](#-instalación)** · **[Guías](#-guía-completa)** · **[Compilar](#-compilar-desde-el-código)** · **[Cómo citar](#-cómo-citar)** · **[Licencia](#-licencia)**
 
 </div>
 
