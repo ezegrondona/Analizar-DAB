@@ -325,12 +325,15 @@ public class Analizar_DAB implements PlugIn {
         gd.showDialog();
     }
 
-    // Las guias se abren desde GitHub con la ruta "blob", no "raw".
-    // Con "raw" el navegador fuerza la descarga del PDF; con "blob"
-    // GitHub lo muestra en su propio visor y el usuario lo lee ahi
-    // mismo. Hasta la version 1.0.0 estos enlaces apuntaban a
-    // Codeberg, de modo que el plugin instalado dependia de un
-    // repositorio que ya no es el principal.
+    // Las guias se abren con la ruta "blob" del repositorio, no con
+    // "raw": con "raw" el navegador fuerza la descarga del PDF, con
+    // "blob" GitHub lo muestra en su visor y el usuario lo lee ahi
+    // mismo.
+    //
+    // Estos enlaces viven dentro del binario, de modo que el plugin
+    // ya instalado depende de que la ruta siga existiendo. Si alguna
+    // vez se mueve el repositorio, hay que cambiarlos aca y publicar
+    // una version nueva: no alcanza con mover los archivos.
     private void abrirGuia() {
         try {
             java.awt.Desktop.getDesktop().browse(new java.net.URI(
