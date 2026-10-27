@@ -14,7 +14,7 @@
 
 <div align="center">
   
-#Secciones
+# Secciones
   
 **[![Descarga](https://img.shields.io/badge/-Descarga-brown.svg)](#-descarga)** · **[Instalación](#-instalación)** · **[Guías](#-guía-completa)** · **[Compilar](#-compilar-desde-el-código)** · **[Cómo citar](#-cómo-citar)** · **[Licencia](#-licencia)**
 
