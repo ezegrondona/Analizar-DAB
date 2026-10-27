@@ -6,7 +6,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23604119.svg)](https://doi.org/10.5281/zenodo.23604119)
 
 <div align="center">
-<img src="src/main/resources/Analizar DAB logo design-Final.png" width="300" alt="Analizar DAB">
+<img src="src/main/resources/Analizar-DAB-logo.png" width="300" alt="Analizar DAB">
 </div>
 
 <div align="justify">

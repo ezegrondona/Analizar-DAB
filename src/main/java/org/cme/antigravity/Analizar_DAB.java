@@ -301,7 +301,7 @@ public class Analizar_DAB implements PlugIn {
     private void mostrarInfoPlugin() {
         GenericDialog gd = new GenericDialog("Informacion del Plugin");
         try {
-            java.net.URL url = getClass().getResource("/Analizar DAB logo design-Final.png");
+            java.net.URL url = getClass().getResource("/Analizar-DAB-logo.png");
             if (url != null) {
                 java.awt.image.BufferedImage img = javax.imageio.ImageIO.read(url);
                 if (img != null) {
