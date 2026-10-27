@@ -21,7 +21,7 @@
 ---
 
 ## ⚠️ Requiere FIJI / ImageJ actualizado.
-- Descargalo en: [FIJI/ImageJ](https://imagej.net/software/fiji/downloads)
+ Descargalo en: [FIJI/ImageJ](https://imagej.net/software/fiji/downloads)
 
 ---
 
