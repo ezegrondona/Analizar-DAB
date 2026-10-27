@@ -11,7 +11,7 @@
 <div align="justify">
   
 - Herramienta desarrollada para FIJI/ImageJ que automatiza la cuantificación de la señal de diaminobencidina (DAB) en imágenes de tejido obtenidas mediante microscopía óptica de campo claro.
-
+---
 <div align="center">
 
 ## Secciones
