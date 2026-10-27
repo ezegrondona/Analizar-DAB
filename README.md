@@ -16,7 +16,7 @@
   
 # Secciones
   
-**[![Descarga](https://img.shields.io/badge/-Descarga-brown.svg)](#-descarga)** · **[Instalación](#-instalación)** · **[Guías](#-guía-completa)** · **[Compilar](#-compilar-desde-el-código)** · **[Cómo citar](#-cómo-citar)** · **[Licencia](#-licencia)**
+**[![Descarga](https://img.shields.io/badge/-Descarga-brown.svg)](#-descarga)** · **[![Instalación](https://img.shields.io/badge/-Instalación-brown.svg)](#-instalación)** · **[Guías](#-guía-completa)** · **[Compilar](#-compilar-desde-el-código)** · **[Cómo citar](#-cómo-citar)** · **[Licencia](#-licencia)**
 
 </div>
 
