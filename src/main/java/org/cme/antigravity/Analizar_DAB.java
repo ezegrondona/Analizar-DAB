@@ -107,7 +107,6 @@ public class Analizar_DAB implements PlugIn {
                 break;
             }
 
-            renombrarArchivos(new File(selectedPath));
 
             if (!procesarCarpeta(new File(selectedPath))) {
                 // Interrupcion: el analisis de la carpeta no llego a completarse.
@@ -689,28 +688,6 @@ public class Analizar_DAB implements PlugIn {
         impCanal.close();
     }
 
-    private void renombrarArchivos(File rootDir) {
-        if (!rootDir.isDirectory())
-            return;
-        File[] folders = rootDir.listFiles(File::isDirectory);
-        if (folders != null) {
-            for (File folder : folders) {
-                String subfolder = folder.getName();
-                File[] files = folder.listFiles((dir, name) -> {
-                    String lw = name.toLowerCase();
-                    return lw.endsWith(".tif") || lw.endsWith(".jpg") || lw.endsWith(".png");
-                });
-                if (files != null) {
-                    for (File file : files) {
-                        String fname = file.getName();
-                        if (!fname.startsWith(subfolder + "_")) {
-                            file.renameTo(new File(folder, subfolder + "_" + fname));
-                        }
-                    }
-                }
-            }
-        }
-    }
 
     private boolean procesarCarpeta(File rootDir) {
         IJ.run("Set Measurements...", "area mean standard stack limit display redirect=None decimal=2");
@@ -741,7 +718,23 @@ public class Analizar_DAB implements PlugIn {
                 ImagePlus imp = IJ.openImage(file.getAbsolutePath());
                 if (imp == null)
                     continue;
-                IJ.showStatus("Procesando: " + file.getName());
+
+                // Identificacion de la fila en la planilla. Antes esto se
+                // conseguia renombrando el archivo en el disco; componer el
+                // nombre aca cumple la misma funcion y no toca el material del
+                // usuario.
+                //
+                // Solo se antepone la carpeta cuando la imagen esta en una
+                // subcarpeta, igual que hacia el renombrado. Y se verifica que
+                // no este ya puesto: las imagenes procesadas con versiones
+                // anteriores quedaron renombradas en el disco, y sin esta
+                // comprobacion se veria el prefijo dos veces.
+                String etiqueta = file.getName();
+                if (!folder.equals(rootDir) && !etiqueta.startsWith(folder.getName() + "_")) {
+                    etiqueta = folder.getName() + "_" + etiqueta;
+                }
+
+                IJ.showStatus("Procesando: " + etiqueta);
                 imp.show();
 
                 // Area de interes. El cartel es NO modal a proposito: con uno
@@ -764,7 +757,7 @@ public class Analizar_DAB implements PlugIn {
                         imp.close();
                         IJ.run("Close All");
                         IJ.showMessage("Proceso detenido",
-                                "El analisis se interrumpio en " + file.getName() + ".\nNo se guardaron resultados.");
+                                "El analisis se interrumpio en " + etiqueta + ".\nNo se guardaron resultados.");
                         return false;
                     }
                     sector = imp.getRoi();
@@ -781,9 +774,9 @@ public class Analizar_DAB implements PlugIn {
                 }
 
                 DABResult dab = detectarDab(imp);
-                dab.impDab.setTitle("Deteccion DAB - " + file.getName());
-                medirAreaTotal(imp, rt, file.getName(), sector);
-                medirIntensidadDab(dab.impDab, rt, file.getName(), sector);
+                dab.impDab.setTitle("Deteccion DAB - " + etiqueta);
+                medirAreaTotal(imp, rt, etiqueta, sector);
+                medirIntensidadDab(dab.impDab, rt, etiqueta, sector);
 
                 // Las dos mediciones agregaron una fila cada una.
                 for (int k = Math.max(0, rt.size() - 2); k < rt.size(); k++) {
