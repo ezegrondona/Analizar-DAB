@@ -8,6 +8,7 @@ import ij.gui.GenericDialog;
 import ij.gui.Roi;
 import ij.io.OpenDialog;
 import ij.io.SaveDialog;
+import ij.measure.Measurements;
 import ij.measure.ResultsTable;
 import ij.plugin.PlugIn;
 import ij.process.ImageProcessor;
@@ -36,6 +37,9 @@ public class Analizar_DAB implements PlugIn {
     private double[] prob_nonbrown = new double[16384];
     private boolean modelo_cargado = false;
     private boolean ir_a_calibrar = false;
+    /** Si esta activo, antes de medir cada imagen se pide un area de
+     *  interes y la determinacion se limita a ella. */
+    private boolean sectorizado = false;
     private boolean ir_a_entrenar = false;
 
     private final Color color_blanco = new Color(255, 255, 255);
@@ -164,6 +168,9 @@ public class Analizar_DAB implements PlugIn {
         panel_botones_dab.add(btn_cargar);
         gd.addPanel(panel_botones_dab);
 
+        gd.addMessage("\u00c1REA DE AN\u00c1LISIS");
+        gd.addCheckbox("Sectorizado", false);
+
         estilizarDialogo(gd, true, btn_info, btn_guia, btn_manual, btn_calibrar, btn_entrenar, btn_cargar);
 
         gd.showDialog();
@@ -182,6 +189,7 @@ public class Analizar_DAB implements PlugIn {
             return "reintentar";
         }
 
+        sectorizado = gd.getNextBoolean();
         return "procesar";
     }
 
@@ -263,7 +271,8 @@ public class Analizar_DAB implements PlugIn {
                 boolean esMensaje = text.contains(":") || text.contains("Presiona");
                 boolean esSeccion = text.equals("INFORMACIÓN") || text.equals("ENTRENAMIENTO DAB")
                         || text.equals("CALIBRACIÓN")
-                        || text.equals("MEDICION DE AREA");
+                        || text.equals("MEDICION DE AREA")
+                        || text.equals("\u00c1REA DE AN\u00c1LISIS");
 
                 if (esMensaje) {
                     comp.setFont(font_msg);
@@ -646,19 +655,24 @@ public class Analizar_DAB implements PlugIn {
         rt.setValue("Imagen", idx, imagen);
     }
 
-    private void medirAreaTotal(ImagePlus imp, ResultsTable rt, String filename) {
+    private void medirAreaTotal(ImagePlus imp, ResultsTable rt, String filename, Roi sector) {
         ImagePlus dup = imp.duplicate();
         IJ.run(dup, "8-bit", "");
         // Establecer umbral fijo: 0 a 230 (tejido). 231 a 255 es fondo blanco.
         dup.getProcessor().setThreshold(0, 230, ImageProcessor.NO_LUT_UPDATE);
         IJ.run(dup, "Convert to Mask", "");
+        // El area se aplica despues de procesar: Measure respeta la seleccion
+        // activa, y asi el procesamiento sigue siendo el de siempre.
+        if (sector != null) dup.setRoi(sector);
         IJ.run(dup, "Measure", "");
         agregarEtiquetas(rt, "Area Total", filename);
         dup.changes = false;
         dup.close();
     }
 
-    private void medirIntensidadDab(ImagePlus impDab, ResultsTable rt, String filename) {
+    private void medirIntensidadDab(ImagePlus impDab, ResultsTable rt, String filename, Roi sector) {
+        // Sin seleccion activa: el Duplicate de mas abajo recortaria a ella.
+        impDab.deleteRoi();
         impDab.show();
         WindowManager.setCurrentWindow(impDab.getWindow());
         IJ.run("RGB Stack");
@@ -668,6 +682,7 @@ public class Analizar_DAB implements PlugIn {
         IJ.run(impCanal, "8-bit", "");
         // Umbral ABSOLUTO: Medir todo lo que no sea fondo (1 a 255)
         impCanal.getProcessor().setThreshold(1, 255, ImageProcessor.NO_LUT_UPDATE);
+        if (sector != null) impCanal.setRoi(sector);
         IJ.run(impCanal, "Measure", "");
         agregarEtiquetas(rt, "Area e Intensidad de DAB", filename);
         impCanal.changes = false;
@@ -728,10 +743,52 @@ public class Analizar_DAB implements PlugIn {
                     continue;
                 IJ.showStatus("Procesando: " + file.getName());
                 imp.show();
+
+                // Area de interes. El cartel es NO modal a proposito: con uno
+                // modal no se podria dibujar nada mientras esta en pantalla,
+                // que es justamente lo que se esta pidiendo.
+                Roi sector = null;
+                String descripcionSector = "Imagen completa";
+                if (sectorizado) {
+                    imp.deleteRoi();
+                    GenericDialog gd_sector = new GenericDialog("Seleccione el area de interes");
+                    gd_sector.addMessage("Dibuje el area a analizar sobre la imagen.\nPuede usar, por ejemplo, la herramienta de poligonos.\n\nSi presiona OK sin seleccionar nada, se analiza la imagen completa.");
+                    estilizarDialogo(gd_sector, false);
+                    gd_sector.setModal(false);
+                    gd_sector.showDialog();
+                    while (!gd_sector.wasOKed() && !gd_sector.wasCanceled()) {
+                        IJ.wait(100);
+                    }
+                    if (gd_sector.wasCanceled()) {
+                        imp.changes = false;
+                        imp.close();
+                        IJ.run("Close All");
+                        IJ.showMessage("Proceso detenido",
+                                "El analisis se interrumpio en " + file.getName() + ".\nNo se guardaron resultados.");
+                        return false;
+                    }
+                    sector = imp.getRoi();
+                    if (sector != null) {
+                        // El area queda en las mismas unidades que el resto de
+                        // la planilla, de modo que pueda usarse para normalizar
+                        // sectores de distinto tamano.
+                        descripcionSector = IJ.d2s(imp.getStatistics(Measurements.AREA).area, 2);
+                        // Se saca de la imagen: duplicate() recorta a la
+                        // seleccion, y las dos mediciones duplican antes de
+                        // medir. El area se aplica recien sobre el duplicado.
+                        imp.deleteRoi();
+                    }
+                }
+
                 DABResult dab = detectarDab(imp);
                 dab.impDab.setTitle("Deteccion DAB - " + file.getName());
-                medirAreaTotal(imp, rt, file.getName());
-                medirIntensidadDab(dab.impDab, rt, file.getName());
+                medirAreaTotal(imp, rt, file.getName(), sector);
+                medirIntensidadDab(dab.impDab, rt, file.getName(), sector);
+
+                // Las dos mediciones agregaron una fila cada una.
+                for (int k = Math.max(0, rt.size() - 2); k < rt.size(); k++) {
+                    rt.setValue("Sector", k, descripcionSector);
+                }
                 count++;
                 dab.impDab.changes = false;
                 dab.impDab.close();
@@ -747,7 +804,7 @@ public class Analizar_DAB implements PlugIn {
                 XSSFSheet sheet = wb.createSheet("Resultados DAB");
 
                 // Encabezados
-                String[] columnas = {"Imagen", "Parametro", "Area", "Intensidad", "StdDev"};
+                String[] columnas = {"Imagen", "Parametro", "Area", "Intensidad", "StdDev", "Sector analizado"};
                 Row headerRow = sheet.createRow(0);
                 for (int c = 0; c < columnas.length; c++) {
                     headerRow.createCell(c).setCellValue(columnas[c]);
@@ -761,6 +818,8 @@ public class Analizar_DAB implements PlugIn {
                     row.createCell(2).setCellValue(rt.getValue("Area", i));
                     row.createCell(3).setCellValue(rt.getValue("Mean", i));
                     row.createCell(4).setCellValue(rt.getValue("StdDev", i));
+                    String sec = rt.getStringValue("Sector", i);
+                    row.createCell(5).setCellValue(sec == null ? "Imagen completa" : sec);
                 }
 
                 // Auto-ajustar ancho de columnas

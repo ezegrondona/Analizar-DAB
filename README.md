@@ -56,6 +56,30 @@ También desde los botones **GUÍA DE USO** y **CALIBRAR** del propio plugin.
 
 ---
 
+## 🧭 Análisis por sectores
+
+Por omisión, la determinación se hace sobre la imagen completa.
+
+La casilla **Sectorizado**, en la ventana principal, permite limitarla a una
+región: con ella activada, el complemento se detiene en cada imagen y pide
+que dibujes el área a analizar —con la herramienta de polígonos, por
+ejemplo—. Sirve, entre otras cosas, para separar regiones dentro de un mismo
+corte y medirlas por separado.
+
+El cartel que lo pide **no bloquea la imagen**: podés dibujar con él en
+pantalla. Si presionás OK sin haber seleccionado nada, se analiza la imagen
+completa.
+
+La detección de DAB no cambia: sigue clasificando por color en toda la
+imagen. Lo que se acota es **qué se mide**.
+
+La planilla incluye una columna **Sector analizado** con el área de la región
+elegida, en las mismas unidades que el resto, o *Imagen completa* cuando no se
+sectorizó. Así el resultado queda trazable y se pueden comparar sectores de
+distinto tamaño.
+
+---
+
 ## 👤 Autor
 
 - **Autor:** Dr. Ezequiel Grondona
