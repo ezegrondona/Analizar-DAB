@@ -333,33 +333,81 @@ public class Analizar_DAB implements PlugIn {
         gd.showDialog();
     }
 
-    // Las guias se abren con la ruta "blob" del repositorio, no con
-    // "raw": con "raw" el navegador fuerza la descarga del PDF, con
-    // "blob" GitHub lo muestra en su visor y el usuario lo lee ahi
-    // mismo.
+    // Las guias viajan DENTRO del .jar, de modo que se abren sin internet y
+    // sin depender de que una direccion siga existiendo. Su copia unica vive
+    // en docs/ del repositorio: el empaquetado las toma de ahi.
     //
-    // Estos enlaces viven dentro del binario, de modo que el plugin
-    // ya instalado depende de que la ruta siga existiendo. Si alguna
-    // vez se mueve el repositorio, hay que cambiarlos aca y publicar
-    // una version nueva: no alcanza con mover los archivos.
+    // Se conserva el enlace publicado como reserva, por si el equipo no sabe
+    // abrir un PDF. Ese enlace si depende de que el repositorio no se mueva:
+    // si alguna vez se mueve, hay que cambiarlo aca y publicar una version
+    // nueva, porque vive dentro del binario.
+    private static final String GUIA_RECURSO = "/guias/Gu\u00eda de Uso - Analizar DAB.pdf";
+    private static final String GUIA_NOMBRE = "Guia de Uso - Analizar DAB.pdf";
+    private static final String GUIA_RESERVA =
+            "https://github.com/ezegrondona/Analizar-DAB/blob/main/docs/Gu%C3%ADa%20de%20Uso%20-%20Analizar%20DAB.pdf";
+
+    private static final String CALIBRACION_RECURSO = "/guias/Gu\u00eda de Calibraci\u00f3n FIJI-ImajeJ.pdf";
+    private static final String CALIBRACION_NOMBRE = "Guia de Calibracion FIJI-ImageJ.pdf";
+    private static final String CALIBRACION_RESERVA =
+            "https://github.com/ezegrondona/Analizar-DAB/blob/main/docs/Gu%C3%ADa%20de%20Calibraci%C3%B3n%20FIJI-ImajeJ.pdf";
+
     private void abrirGuia() {
-        try {
-            java.awt.Desktop.getDesktop().browse(new java.net.URI(
-                    "https://github.com/ezegrondona/Analizar-DAB/blob/main/docs/Gu%C3%ADa%20de%20Uso%20-%20Analizar%20DAB.pdf"));
-        } catch (Exception e) {
-            IJ.showMessage("Error", "No se pudo abrir el enlace:\n" + e.getMessage());
-        }
+        abrirDocumento(GUIA_RECURSO, GUIA_NOMBRE, GUIA_RESERVA);
     }
 
     private void abrirAyuda() {
-        try {
-            java.awt.Desktop.getDesktop().browse(new java.net.URI(
-                    "https://github.com/ezegrondona/Analizar-DAB/blob/main/docs/Gu%C3%ADa%20de%20Calibraci%C3%B3n%20FIJI-ImajeJ.pdf"));
-        } catch (Exception e) {
-            IJ.showMessage("Error", "No se pudo abrir el enlace:\n" + e.getMessage());
-        }
+        abrirDocumento(CALIBRACION_RECURSO, CALIBRACION_NOMBRE, CALIBRACION_RESERVA);
     }
 
+    /** Abre un documento que viaja dentro del complemento.
+     *
+     *  El documento se vuelca a la carpeta temporal del sistema y se abre con
+     *  el lector de PDF del usuario. Si ya estaba volcado y no se puede
+     *  reescribir -lo habitual cuando quedo abierto en el lector- se abre el
+     *  que ya esta, en vez de fallar.
+     *
+     *  Si no hay forma de abrirlo localmente, se recurre al enlace publicado.
+     */
+    private void abrirDocumento(String recurso, String nombreVisible, String urlDeReserva) {
+        try {
+            java.io.File destino = new java.io.File(System.getProperty("java.io.tmpdir"), nombreVisible);
+            try {
+                java.io.InputStream origen = getClass().getResourceAsStream(recurso);
+                if (origen == null) {
+                    throw new java.io.IOException("El documento no esta dentro del complemento.");
+                }
+                try {
+                    java.io.FileOutputStream salida = new java.io.FileOutputStream(destino);
+                    try {
+                        byte[] trozo = new byte[8192];
+                        int leidos;
+                        while ((leidos = origen.read(trozo)) != -1) {
+                            salida.write(trozo, 0, leidos);
+                        }
+                    } finally {
+                        salida.close();
+                    }
+                } finally {
+                    origen.close();
+                }
+                destino.deleteOnExit();
+            } catch (java.io.IOException ex) {
+                // Si no se pudo escribir pero el documento ya estaba volcado
+                // de una apertura anterior, sirve igual.
+                if (!destino.isFile()) {
+                    throw ex;
+                }
+            }
+            java.awt.Desktop.getDesktop().open(destino);
+        } catch (Exception e) {
+            try {
+                java.awt.Desktop.getDesktop().browse(new java.net.URI(urlDeReserva));
+            } catch (Exception e2) {
+                IJ.showMessage("Error",
+                        "No se pudo abrir la gu\u00eda." + System.lineSeparator() + e.getMessage());
+            }
+        }
+    }
     private double[] rgbACbcr(int r, int g, int b) {
         double cb = 0.5 * b - 0.169 * r - 0.331 * g + 128.0;
         double cr = 0.5 * r - 0.419 * g - 0.081 * b + 128.0;
