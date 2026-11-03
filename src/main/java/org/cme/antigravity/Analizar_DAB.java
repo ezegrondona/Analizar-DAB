@@ -793,7 +793,7 @@ public class Analizar_DAB implements PlugIn {
                 if (sectorizado) {
                     imp.deleteRoi();
                     GenericDialog gd_sector = new GenericDialog("Seleccione el area de interes");
-                    gd_sector.addMessage("Dibuje el area a analizar sobre la imagen.\nPuede usar, por ejemplo, la herramienta de poligonos.\n\nSi presiona OK sin seleccionar nada, se analiza la imagen completa.");
+                    gd_sector.addMessage("Dibuje el area a analizar sobre la imagen.\nPuede usar, por ejemplo, la herramienta de poligonos.\n\nPara analizar VARIAS regiones, mantenga Shift al dibujar las\nsiguientes. Con Alt las resta.\n\nSi presiona OK sin seleccionar nada, se analiza la imagen completa.");
                     estilizarDialogo(gd_sector, false);
                     gd_sector.setModal(false);
                     gd_sector.showDialog();

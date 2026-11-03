@@ -76,6 +76,11 @@ El cartel que lo pide **no bloquea la imagen**: podés dibujar con él en
 pantalla. Si presionás OK sin haber seleccionado nada, se analiza la imagen
 completa.
 
+**Se pueden seleccionar varias regiones a la vez.** Mantené **Shift** al
+dibujar las siguientes para sumarlas, o **Alt** para restarlas. La medición se
+aplica al conjunto: el área es la suma de las partes y la intensidad, su
+promedio ponderado.
+
 La detección de DAB no cambia: sigue clasificando por color en toda la
 imagen. Lo que se acota es **qué se mide**.
 
