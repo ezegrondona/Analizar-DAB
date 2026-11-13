@@ -152,4 +152,8 @@ El `.jar` que se distribuye empaqueta bibliotecas de terceros que
 conservan sus propias licencias, todas permisivas y compatibles. Están
 detalladas en [`THIRD-PARTY-NOTICES.txt`](THIRD-PARTY-NOTICES.txt).
 
+---
+
+## 🔙 [INICIO] (https://github.com/ezegrondona)
+
 </div>
