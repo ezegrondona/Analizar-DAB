@@ -154,6 +154,5 @@ detalladas en [`THIRD-PARTY-NOTICES.txt`](THIRD-PARTY-NOTICES.txt).
 
 ---
 
-## 🔙 [INICIO] (https://github.com/ezegrondona)
-
+ 🔙 **[INICIO](https://github.com/ezegrondona)**
 </div>
